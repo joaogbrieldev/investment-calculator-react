@@ -5,7 +5,7 @@
 // - expectedReturn: A taxa de retorno esperada (anual)
 // - duration: A duração do investimento (período de tempo)
 
-type CalculateInvestmentResults = {
+export type CalculateInvestmentResults = {
   initialInvestment: number;
   annualInvestment: number;
   expectedReturn: number;
