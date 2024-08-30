@@ -1,9 +1,22 @@
+import React from "react";
 import { calculateInvestmentResults, formatter } from "../util/investment";
 
-export const Results = ({ results }) => {
+interface ResultItem {
+  year: number;
+  valueEndOfYear: number;
+  interest: number;
+  annualInvestment: number;
+}
+
+interface ResultsProps {
+  results: ResultItem[];
+}
+
+export const Results: React.FC<ResultsProps> = ({ results }) => {
   const result = calculateInvestmentResults(results);
   const initialInvestment =
     result[0].valueEndOfYear - result[0].interest - result[0].annualInvestment;
+
   return (
     <table id="result">
       <thead>
@@ -22,6 +35,7 @@ export const Results = ({ results }) => {
             item.annualInvestment * item.year -
             initialInvestment;
           const totalAmountInvested = item.valueEndOfYear - totalInterest;
+
           return (
             <tr key={item.year}>
               <td>{item.year}</td>

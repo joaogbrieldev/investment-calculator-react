@@ -1,8 +1,17 @@
-import { calculateInvestmentResults } from "../util/investment";
+interface UserInputProps {
+  userInput: {
+    initialInvestment: number;
+    annualInvestment: number;
+    expectedReturn: number;
+    duration: number;
+  };
+  changeInput: (field: string, value: number | string) => void;
+}
 
-export const UserInput = ({ userInput, changeInput }) => {
-  const result = calculateInvestmentResults(userInput);
-
+export const UserInput: React.FC<UserInputProps> = ({
+  userInput,
+  changeInput,
+}) => {
   return (
     <>
       <section id="user-input">
