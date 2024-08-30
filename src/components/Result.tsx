@@ -1,4 +1,7 @@
-export const Results = () => {
+import { formatter } from "../util/investment";
+
+export const Results = ({ results }) => {
+  console.log(results);
   return (
     <table id="result">
       <thead>
@@ -11,13 +14,17 @@ export const Results = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>2</td>
-          <td>3</td>
-          <td>4</td>
-          <td>5</td>
-        </tr>
+        {results.map((item) => {
+          return (
+            <tr key={item.year}>
+              <td>{item.year}</td>
+              <td>{formatter.format(item.interest)}</td>
+              <td>{formatter.format(item.valueEndOfYear)}</td>
+              <td>{formatter.format(item.annualInvestment)}</td>
+              <td>{formatter.format(item.interest)}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
