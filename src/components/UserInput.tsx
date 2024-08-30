@@ -1,25 +1,7 @@
-import { useState } from "react";
 import { calculateInvestmentResults } from "../util/investment";
-import { Results } from "./Result";
 
-export const UserInput = () => {
-  const [inputValues, setInputValues] = useState({
-    initialInvestment: 10000,
-    annualInvestment: 1200,
-    expectedReturn: 6,
-    duration: 10,
-  });
-
-  function changeInput(value1, value2) {
-    setInputValues((prevUserInput) => {
-      return {
-        ...prevUserInput,
-        [value1]: value2,
-      };
-    });
-  }
-
-  const result = calculateInvestmentResults(inputValues);
+export const UserInput = ({ userInput, changeInput }) => {
+  const result = calculateInvestmentResults(userInput);
 
   return (
     <>
@@ -29,6 +11,7 @@ export const UserInput = () => {
             <label>Initial Investment</label>
             <input
               type="number"
+              value={userInput.initialInvestment}
               onChange={(event) =>
                 changeInput("initialInvestment", event.target.value)
               }
@@ -38,6 +21,7 @@ export const UserInput = () => {
             <label>Annual Investment</label>
             <input
               type="number"
+              value={userInput.annualInvestment}
               onChange={(event) =>
                 changeInput("annualInvestment", event.target.value)
               }
@@ -49,6 +33,7 @@ export const UserInput = () => {
             <label>Expected Return</label>
             <input
               type="number"
+              value={userInput.expectedReturn}
               onChange={(event) =>
                 changeInput("expectedReturn", event.target.value)
               }
@@ -58,12 +43,12 @@ export const UserInput = () => {
             <label>Duration</label>
             <input
               type="number"
+              value={userInput.duration}
               onChange={(event) => changeInput("duration", event.target.value)}
             />
           </p>
         </div>
       </section>
-      <Results results={result} />
     </>
   );
 };
